@@ -2,6 +2,10 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("Analyzer")
 
+process.TFileService = cms.Service("TFileService",
+               fileName = cms.string("output.root"),
+               )
+
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
