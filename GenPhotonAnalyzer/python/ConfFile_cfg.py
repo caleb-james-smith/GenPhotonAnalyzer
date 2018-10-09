@@ -7,7 +7,7 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 process.MessageLogger.cerr.FwkReport.reportEvery = 10000
 
 process.TFileService = cms.Service("TFileService",
-               fileName = cms.string("output.root"),
+               fileName = cms.string("analyzer_output.root"),
                )
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
