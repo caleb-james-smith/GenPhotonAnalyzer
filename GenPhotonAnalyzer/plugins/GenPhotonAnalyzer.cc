@@ -60,14 +60,14 @@ class GenPhotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       edm::EDGetTokenT<edm::View<reco::GenParticle>> genParTok_;
       edm::Service<TFileService> fs;
       TH1F * genEta_eta5;                       
-      TH1F * genEta_eta5_pt10;                  
-      TH1F * genEta_eta5_pt10_pdgid22;          
-      TH1F * genEta_eta5_pt10_pdgid22_status1;  
-      TH1F * genEta_eta5_pt10_pdgid22_status2;  
-      TH1F * genEta_eta5_pt10_pdgid22_status21; 
-      TH1F * genEta_eta5_pt10_pdgid22_status22; 
-      TH1F * genEta_eta5_pt10_pdgid22_status23; 
-      TH1F * genEta_eta5_pt10_pdgid22_status24; 
+      TH1F * genEta_eta5_pt200;                  
+      TH1F * genEta_eta5_pt200_pdgid22;          
+      TH1F * genEta_eta5_pt200_pdgid22_status1;  
+      TH1F * genEta_eta5_pt200_pdgid22_status2;  
+      TH1F * genEta_eta5_pt200_pdgid22_status21; 
+      TH1F * genEta_eta5_pt200_pdgid22_status22; 
+      TH1F * genEta_eta5_pt200_pdgid22_status23; 
+      TH1F * genEta_eta5_pt200_pdgid22_status24; 
 
       // ----------member data ---------------------------
 };
@@ -94,14 +94,14 @@ GenPhotonAnalyzer::GenPhotonAnalyzer(const edm::ParameterSet& iConfig):
     printf("- Creating histograms\n");
     
     genEta_eta5                       =  fs->make<TH1F>("genEta_eta5","genEta_eta5", 100, -5.0, 5.0);
-    genEta_eta5_pt10                  =  fs->make<TH1F>("genEta_eta5_pt10","genEta_eta5_pt10", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22          =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22","genEta_eta5_pt10_pdgid22", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status1  =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status1","genEta_eta5_pt10_pdgid22_status1", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status2  =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status2","genEta_eta5_pt10_pdgid22_status2", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status21 =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status21","genEta_eta5_pt10_pdgid22_status21", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status22 =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status22","genEta_eta5_pt10_pdgid22_status22", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status23 =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status23","genEta_eta5_pt10_pdgid22_status23", 100, -5.0, 5.0);
-    genEta_eta5_pt10_pdgid22_status24 =  fs->make<TH1F>("genEta_eta5_pt10_pdgid22_status24","genEta_eta5_pt10_pdgid22_status24", 100, -5.0, 5.0);
+    genEta_eta5_pt200                  =  fs->make<TH1F>("genEta_eta5_pt200","genEta_eta5_pt200", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22          =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22","genEta_eta5_pt200_pdgid22", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status1  =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status1","genEta_eta5_pt200_pdgid22_status1", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status2  =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status2","genEta_eta5_pt200_pdgid22_status2", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status21 =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status21","genEta_eta5_pt200_pdgid22_status21", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status22 =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status22","genEta_eta5_pt200_pdgid22_status22", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status23 =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status23","genEta_eta5_pt200_pdgid22_status23", 100, -5.0, 5.0);
+    genEta_eta5_pt200_pdgid22_status24 =  fs->make<TH1F>("genEta_eta5_pt200_pdgid22_status24","genEta_eta5_pt200_pdgid22_status24", 100, -5.0, 5.0);
 
 }
 
@@ -140,18 +140,18 @@ GenPhotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
         if (genEta < 5.0)
         {
             genEta_eta5->Fill(genEta);
-            if (genPt > 10.0)
+            if (genPt > 200.0)
             {
-                genEta_eta5_pt10->Fill(genEta);
+                genEta_eta5_pt200->Fill(genEta);
                 if (genPdgId == 22)
                 {
-                    genEta_eta5_pt10_pdgid22->Fill(genEta);
-                    if (genStatus == 1)  genEta_eta5_pt10_pdgid22_status1->Fill(genEta);
-                    if (genStatus == 2)  genEta_eta5_pt10_pdgid22_status2->Fill(genEta);
-                    if (genStatus == 21) genEta_eta5_pt10_pdgid22_status21->Fill(genEta);
-                    if (genStatus == 22) genEta_eta5_pt10_pdgid22_status22->Fill(genEta);
-                    if (genStatus == 23) genEta_eta5_pt10_pdgid22_status23->Fill(genEta);
-                    if (genStatus == 24) genEta_eta5_pt10_pdgid22_status24->Fill(genEta);
+                    genEta_eta5_pt200_pdgid22->Fill(genEta);
+                    if (genStatus == 1)  genEta_eta5_pt200_pdgid22_status1->Fill(genEta);
+                    if (genStatus == 2)  genEta_eta5_pt200_pdgid22_status2->Fill(genEta);
+                    if (genStatus == 21) genEta_eta5_pt200_pdgid22_status21->Fill(genEta);
+                    if (genStatus == 22) genEta_eta5_pt200_pdgid22_status22->Fill(genEta);
+                    if (genStatus == 23) genEta_eta5_pt200_pdgid22_status23->Fill(genEta);
+                    if (genStatus == 24) genEta_eta5_pt200_pdgid22_status24->Fill(genEta);
                 }
             }
         }
